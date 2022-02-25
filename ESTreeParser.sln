@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "ESTreeParser", "ESTreeParser\ESTreeParser.fsproj", "{12B1AD5E-357E-47C3-89CC-806317BCAFBB}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ESTreeParser.Test", "ESTreeParser.Test\ESTreeParser.Test.fsproj", "{AE33789D-05E5-4E4B-9430-074FD83D9174}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12B1AD5E-357E-47C3-89CC-806317BCAFBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12B1AD5E-357E-47C3-89CC-806317BCAFBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12B1AD5E-357E-47C3-89CC-806317BCAFBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12B1AD5E-357E-47C3-89CC-806317BCAFBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE33789D-05E5-4E4B-9430-074FD83D9174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE33789D-05E5-4E4B-9430-074FD83D9174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE33789D-05E5-4E4B-9430-074FD83D9174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE33789D-05E5-4E4B-9430-074FD83D9174}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C7208E2-24DB-44E9-9BE6-6960DD193FB5}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,99 @@
+﻿%{
+// **estree.fsyacc**
+open ESTreeParser
+open ESTreeParser.ESTreeTokenUtils
+open ESTreeParser.Ast
+
+%}
+
+file: definitions {List.rev s0}
+
+definitions:
+    |             definition {[s0]}
+    | definitions definition {s1::s0}
+
+definition:
+    | interfaceDefinition {s0}
+    |      enumDefinition {s0}
+
+interfaceDefinition: interfaceHead interfaceBody 
+        {
+            let e,n,i = s0
+            Interface(e,n,i,s1)
+        }
+
+interfaceHead:
+    |        INTERFACE ID          {false,s1,[]}
+    | EXTEND INTERFACE ID          {true ,s2,[]}
+    |        INTERFACE ID "<:" ids {false,s1,s3}
+    | EXTEND INTERFACE ID "<:" ids {true ,s2,s4}
+
+ids:
+    |         ID {[s0]}
+    | ids "," ID {s2::s0}
+
+interfaceBody:
+    | "{" "}"        {[]}
+    | "{" fields "}" {List.rev s1}
+
+fields:
+    |        field {[s0]}
+	| fields field {s1::s0}
+
+field : ID ":" annotation ";" {s0,s2}
+
+annotation:
+    | QUOTED                    {StringLiteral s0}
+    | ID                        {NamedType s0}
+    | annotation "|" annotation {
+        match s0 with
+        | Union ls -> Union(ls @ [s2])
+        | _ -> Union [s0;s2]
+        }
+    | "[" annotation "]"        {Array s1}
+    | interfaceBody             {Object s0}
+
+enumDefinition: enumHead enumBody {
+    let e,n = s0
+    Enum(e,n,s1)
+    }
+
+enumHead:
+    |        ENUM ID {false,s1}
+    | EXTEND ENUM ID {true ,s2}
+
+enumBody:
+    | "{" "}"       {[]}
+    | "{" cases "}" {List.rev s1}
+
+cases:
+    |           QUOTED {[s0]}
+    | cases "|" QUOTED {s2::s0}
+
+%%
+
+%left "|"
+
+%%
+
+// token
+QUOTED : "string"
+ID     : "string"
+
+// production
+file: "Definition list"
+definitions: "Definition list"
+definition: "Definition"
+interfaceDefinition: "Definition"
+enumDefinition: "Definition"
+
+interfaceHead: "bool*string*list<string>"
+ids: "string list"
+interfaceBody: "list<string*Annotation>"
+fields: "list<string*Annotation>"
+field: "string*Annotation"
+annotation: "Annotation"
+
+enumHead: "bool*string"
+enumBody: "string list"
+cases: "string list"

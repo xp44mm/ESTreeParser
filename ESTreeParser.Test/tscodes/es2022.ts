@@ -1,0 +1,36 @@
+extend interface ClassBody {
+    body: [ MethodDefinition | PropertyDefinition | StaticBlock ];
+}
+interface PropertyDefinition <: Node {
+    type: "PropertyDefinition";
+    key: Expression | PrivateIdentifier;
+    value: Expression | null;
+    computed: boolean;
+    static: boolean;
+}
+extend interface MethodDefinition {
+    key: Expression | PrivateIdentifier;
+}
+interface PrivateIdentifier <: Node {
+    type: "PrivateIdentifier";
+    name: string;
+}
+extend interface MemberExpression {
+    property: Expression | PrivateIdentifier;
+}
+interface StaticBlock <: BlockStatement {
+    type: "StaticBlock"
+}
+extend interface BinaryExpression <: Expression {
+    left: Expression | PrivateIdentifier;
+}
+extend interface ImportSpecifier <: ModuleSpecifier {
+    imported: Identifier | Literal;
+}
+extend interface ExportSpecifier <: ModuleSpecifier {
+    local: Identifier | Literal;
+    exported: Identifier | Literal;
+}
+extend interface ExportAllDeclaration {
+    exported: Identifier | Literal | null
+}
