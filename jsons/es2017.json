@@ -1,1 +1,34 @@
-[{"extend":true,"name":"Function","interface":{"inherit":[],"body":[["async","boolean"]]}},{"extend":false,"name":"AwaitExpression","interface":{"inherit":["Expression"],"body":[["type","\"AwaitExpression\""],["argument","Expression"]]}}]
+[
+    {
+        "extend": true,
+        "name": "Function",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "async",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "AwaitExpression",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"AwaitExpression\""
+                ],
+                [
+                    "argument",
+                    "Expression"
+                ]
+            ]
+        }
+    }
+]

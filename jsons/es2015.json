@@ -1,1 +1,920 @@
-[{"extend":true,"name":"Program","interface":{"inherit":[],"body":[["sourceType",{"union":["\"script\"","\"module\""]}],["body",{"array":{"Union":["Statement","ModuleDeclaration"]}}]]}},{"extend":true,"name":"Function","interface":{"inherit":[],"body":[["generator","boolean"]]}},{"extend":false,"name":"ForOfStatement","interface":{"inherit":["ForInStatement"],"body":[["type","\"ForOfStatement\""]]}},{"extend":true,"name":"VariableDeclaration","interface":{"inherit":[],"body":[["kind",{"union":["\"var\"","\"let\"","\"const\""]}]]}},{"extend":false,"name":"Super","interface":{"inherit":["Node"],"body":[["type","\"Super\""]]}},{"extend":true,"name":"CallExpression","interface":{"inherit":[],"body":[["callee",{"union":["Expression","Super"]}]]}},{"extend":true,"name":"MemberExpression","interface":{"inherit":[],"body":[["object",{"union":["Expression","Super"]}]]}},{"extend":false,"name":"SpreadElement","interface":{"inherit":["Node"],"body":[["type","\"SpreadElement\""],["argument","Expression"]]}},{"extend":true,"name":"ArrayExpression","interface":{"inherit":[],"body":[["elements",{"array":{"Union":["Expression","SpreadElement","null"]}}]]}},{"extend":true,"name":"CallExpression","interface":{"inherit":[],"body":[["arguments",{"array":{"Union":["Expression","SpreadElement"]}}]]}},{"extend":true,"name":"NewExpression","interface":{"inherit":[],"body":[["arguments",{"array":{"Union":["Expression","SpreadElement"]}}]]}},{"extend":true,"name":"AssignmentExpression","interface":{"inherit":[],"body":[["left","Pattern"]]}},{"extend":true,"name":"Property","interface":{"inherit":[],"body":[["key","Expression"],["method","boolean"],["shorthand","boolean"],["computed","boolean"]]}},{"extend":false,"name":"ArrowFunctionExpression","interface":{"inherit":["Expression","Function"],"body":[["type","\"ArrowFunctionExpression\""],["body",{"union":["FunctionBody","Expression"]}],["expression","boolean"],["generator","false"]]}},{"extend":false,"name":"YieldExpression","interface":{"inherit":["Expression"],"body":[["type","\"YieldExpression\""],["argument",{"union":["Expression","null"]}],["delegate","boolean"]]}},{"extend":false,"name":"TemplateLiteral","interface":{"inherit":["Expression"],"body":[["type","\"TemplateLiteral\""],["quasis",{"array":{"NamedType":"TemplateElement"}}],["expressions",{"array":{"NamedType":"Expression"}}]]}},{"extend":false,"name":"TaggedTemplateExpression","interface":{"inherit":["Expression"],"body":[["type","\"TaggedTemplateExpression\""],["tag","Expression"],["quasi","TemplateLiteral"]]}},{"extend":false,"name":"TemplateElement","interface":{"inherit":["Node"],"body":[["type","\"TemplateElement\""],["tail","boolean"],["value",{"object":[["cooked","string"],["raw","string"]]}]]}},{"extend":false,"name":"AssignmentProperty","interface":{"inherit":["Property"],"body":[["type","\"Property\""],["value","Pattern"],["kind","\"init\""],["method","false"]]}},{"extend":false,"name":"ObjectPattern","interface":{"inherit":["Pattern"],"body":[["type","\"ObjectPattern\""],["properties",{"array":{"NamedType":"AssignmentProperty"}}]]}},{"extend":false,"name":"ArrayPattern","interface":{"inherit":["Pattern"],"body":[["type","\"ArrayPattern\""],["elements",{"array":{"Union":["Pattern","null"]}}]]}},{"extend":false,"name":"RestElement","interface":{"inherit":["Pattern"],"body":[["type","\"RestElement\""],["argument","Pattern"]]}},{"extend":false,"name":"AssignmentPattern","interface":{"inherit":["Pattern"],"body":[["type","\"AssignmentPattern\""],["left","Pattern"],["right","Expression"]]}},{"extend":false,"name":"Class","interface":{"inherit":["Node"],"body":[["id",{"union":["Identifier","null"]}],["superClass",{"union":["Expression","null"]}],["body","ClassBody"]]}},{"extend":false,"name":"ClassBody","interface":{"inherit":["Node"],"body":[["type","\"ClassBody\""],["body",{"array":{"NamedType":"MethodDefinition"}}]]}},{"extend":false,"name":"MethodDefinition","interface":{"inherit":["Node"],"body":[["type","\"MethodDefinition\""],["key","Expression"],["value","FunctionExpression"],["kind",{"union":["\"constructor\"","\"method\"","\"get\"","\"set\""]}],["computed","boolean"],["static","boolean"]]}},{"extend":false,"name":"ClassDeclaration","interface":{"inherit":["Declaration","Class"],"body":[["type","\"ClassDeclaration\""],["id","Identifier"]]}},{"extend":false,"name":"ClassExpression","interface":{"inherit":["Expression","Class"],"body":[["type","\"ClassExpression\""]]}},{"extend":false,"name":"MetaProperty","interface":{"inherit":["Expression"],"body":[["type","\"MetaProperty\""],["meta","Identifier"],["property","Identifier"]]}},{"extend":false,"name":"ModuleDeclaration","interface":{"inherit":["Node"],"body":[]}},{"extend":false,"name":"ModuleSpecifier","interface":{"inherit":["Node"],"body":[["local","Identifier"]]}},{"extend":false,"name":"ImportDeclaration","interface":{"inherit":["ModuleDeclaration"],"body":[["type","\"ImportDeclaration\""],["specifiers",{"array":{"Union":["ImportSpecifier","ImportDefaultSpecifier","ImportNamespaceSpecifier"]}}],["source","Literal"]]}},{"extend":false,"name":"ImportSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["type","\"ImportSpecifier\""],["imported","Identifier"]]}},{"extend":false,"name":"ImportDefaultSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["type","\"ImportDefaultSpecifier\""]]}},{"extend":false,"name":"ImportNamespaceSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["type","\"ImportNamespaceSpecifier\""]]}},{"extend":false,"name":"ExportNamedDeclaration","interface":{"inherit":["ModuleDeclaration"],"body":[["type","\"ExportNamedDeclaration\""],["declaration",{"union":["Declaration","null"]}],["specifiers",{"array":{"NamedType":"ExportSpecifier"}}],["source",{"union":["Literal","null"]}]]}},{"extend":false,"name":"ExportSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["type","\"ExportSpecifier\""],["exported","Identifier"]]}},{"extend":false,"name":"AnonymousDefaultExportedFunctionDeclaration","interface":{"inherit":["Function"],"body":[["type","\"FunctionDeclaration\""],["id","null"]]}},{"extend":false,"name":"AnonymousDefaultExportedClassDeclaration","interface":{"inherit":["Class"],"body":[["type","\"ClassDeclaration\""],["id","null"]]}},{"extend":false,"name":"ExportDefaultDeclaration","interface":{"inherit":["ModuleDeclaration"],"body":[["type","\"ExportDefaultDeclaration\""],["declaration",{"union":["AnonymousDefaultExportedFunctionDeclaration","FunctionDeclaration","AnonymousDefaultExportedClassDeclaration","ClassDeclaration","Expression"]}]]}},{"extend":false,"name":"ExportAllDeclaration","interface":{"inherit":["ModuleDeclaration"],"body":[["type","\"ExportAllDeclaration\""],["source","Literal"]]}}]
+[
+    {
+        "extend": true,
+        "name": "Program",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "sourceType",
+                    {
+                        "union": [
+                            "\"script\"",
+                            "\"module\""
+                        ]
+                    }
+                ],
+                [
+                    "body",
+                    {
+                        "array": {
+                            "Union": [
+                                "Statement",
+                                "ModuleDeclaration"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "Function",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "generator",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ForOfStatement",
+        "interface": {
+            "inherit": [
+                "ForInStatement"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ForOfStatement\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "VariableDeclaration",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "kind",
+                    {
+                        "union": [
+                            "\"var\"",
+                            "\"let\"",
+                            "\"const\""
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "Super",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"Super\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "CallExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "callee",
+                    {
+                        "union": [
+                            "Expression",
+                            "Super"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "MemberExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "object",
+                    {
+                        "union": [
+                            "Expression",
+                            "Super"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "SpreadElement",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"SpreadElement\""
+                ],
+                [
+                    "argument",
+                    "Expression"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "ArrayExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "elements",
+                    {
+                        "array": {
+                            "Union": [
+                                "Expression",
+                                "SpreadElement",
+                                "null"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "CallExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "arguments",
+                    {
+                        "array": {
+                            "Union": [
+                                "Expression",
+                                "SpreadElement"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "NewExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "arguments",
+                    {
+                        "array": {
+                            "Union": [
+                                "Expression",
+                                "SpreadElement"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "AssignmentExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "left",
+                    "Pattern"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "Property",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "key",
+                    "Expression"
+                ],
+                [
+                    "method",
+                    "boolean"
+                ],
+                [
+                    "shorthand",
+                    "boolean"
+                ],
+                [
+                    "computed",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ArrowFunctionExpression",
+        "interface": {
+            "inherit": [
+                "Expression",
+                "Function"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ArrowFunctionExpression\""
+                ],
+                [
+                    "body",
+                    {
+                        "union": [
+                            "FunctionBody",
+                            "Expression"
+                        ]
+                    }
+                ],
+                [
+                    "expression",
+                    "boolean"
+                ],
+                [
+                    "generator",
+                    "false"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "YieldExpression",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"YieldExpression\""
+                ],
+                [
+                    "argument",
+                    {
+                        "union": [
+                            "Expression",
+                            "null"
+                        ]
+                    }
+                ],
+                [
+                    "delegate",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "TemplateLiteral",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"TemplateLiteral\""
+                ],
+                [
+                    "quasis",
+                    {
+                        "array": {
+                            "NamedType": "TemplateElement"
+                        }
+                    }
+                ],
+                [
+                    "expressions",
+                    {
+                        "array": {
+                            "NamedType": "Expression"
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "TaggedTemplateExpression",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"TaggedTemplateExpression\""
+                ],
+                [
+                    "tag",
+                    "Expression"
+                ],
+                [
+                    "quasi",
+                    "TemplateLiteral"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "TemplateElement",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"TemplateElement\""
+                ],
+                [
+                    "tail",
+                    "boolean"
+                ],
+                [
+                    "value",
+                    {
+                        "object": [
+                            [
+                                "cooked",
+                                "string"
+                            ],
+                            [
+                                "raw",
+                                "string"
+                            ]
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "AssignmentProperty",
+        "interface": {
+            "inherit": [
+                "Property"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"Property\""
+                ],
+                [
+                    "value",
+                    "Pattern"
+                ],
+                [
+                    "kind",
+                    "\"init\""
+                ],
+                [
+                    "method",
+                    "false"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ObjectPattern",
+        "interface": {
+            "inherit": [
+                "Pattern"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ObjectPattern\""
+                ],
+                [
+                    "properties",
+                    {
+                        "array": {
+                            "NamedType": "AssignmentProperty"
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ArrayPattern",
+        "interface": {
+            "inherit": [
+                "Pattern"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ArrayPattern\""
+                ],
+                [
+                    "elements",
+                    {
+                        "array": {
+                            "Union": [
+                                "Pattern",
+                                "null"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "RestElement",
+        "interface": {
+            "inherit": [
+                "Pattern"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"RestElement\""
+                ],
+                [
+                    "argument",
+                    "Pattern"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "AssignmentPattern",
+        "interface": {
+            "inherit": [
+                "Pattern"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"AssignmentPattern\""
+                ],
+                [
+                    "left",
+                    "Pattern"
+                ],
+                [
+                    "right",
+                    "Expression"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "Class",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "id",
+                    {
+                        "union": [
+                            "Identifier",
+                            "null"
+                        ]
+                    }
+                ],
+                [
+                    "superClass",
+                    {
+                        "union": [
+                            "Expression",
+                            "null"
+                        ]
+                    }
+                ],
+                [
+                    "body",
+                    "ClassBody"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ClassBody",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ClassBody\""
+                ],
+                [
+                    "body",
+                    {
+                        "array": {
+                            "NamedType": "MethodDefinition"
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "MethodDefinition",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"MethodDefinition\""
+                ],
+                [
+                    "key",
+                    "Expression"
+                ],
+                [
+                    "value",
+                    "FunctionExpression"
+                ],
+                [
+                    "kind",
+                    {
+                        "union": [
+                            "\"constructor\"",
+                            "\"method\"",
+                            "\"get\"",
+                            "\"set\""
+                        ]
+                    }
+                ],
+                [
+                    "computed",
+                    "boolean"
+                ],
+                [
+                    "static",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ClassDeclaration",
+        "interface": {
+            "inherit": [
+                "Declaration",
+                "Class"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ClassDeclaration\""
+                ],
+                [
+                    "id",
+                    "Identifier"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ClassExpression",
+        "interface": {
+            "inherit": [
+                "Expression",
+                "Class"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ClassExpression\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "MetaProperty",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"MetaProperty\""
+                ],
+                [
+                    "meta",
+                    "Identifier"
+                ],
+                [
+                    "property",
+                    "Identifier"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ModuleDeclaration",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": []
+        }
+    },
+    {
+        "extend": false,
+        "name": "ModuleSpecifier",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "local",
+                    "Identifier"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ImportDeclaration",
+        "interface": {
+            "inherit": [
+                "ModuleDeclaration"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ImportDeclaration\""
+                ],
+                [
+                    "specifiers",
+                    {
+                        "array": {
+                            "Union": [
+                                "ImportSpecifier",
+                                "ImportDefaultSpecifier",
+                                "ImportNamespaceSpecifier"
+                            ]
+                        }
+                    }
+                ],
+                [
+                    "source",
+                    "Literal"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ImportSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ImportSpecifier\""
+                ],
+                [
+                    "imported",
+                    "Identifier"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ImportDefaultSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ImportDefaultSpecifier\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ImportNamespaceSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ImportNamespaceSpecifier\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ExportNamedDeclaration",
+        "interface": {
+            "inherit": [
+                "ModuleDeclaration"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ExportNamedDeclaration\""
+                ],
+                [
+                    "declaration",
+                    {
+                        "union": [
+                            "Declaration",
+                            "null"
+                        ]
+                    }
+                ],
+                [
+                    "specifiers",
+                    {
+                        "array": {
+                            "NamedType": "ExportSpecifier"
+                        }
+                    }
+                ],
+                [
+                    "source",
+                    {
+                        "union": [
+                            "Literal",
+                            "null"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ExportSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ExportSpecifier\""
+                ],
+                [
+                    "exported",
+                    "Identifier"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "AnonymousDefaultExportedFunctionDeclaration",
+        "interface": {
+            "inherit": [
+                "Function"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"FunctionDeclaration\""
+                ],
+                [
+                    "id",
+                    "null"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "AnonymousDefaultExportedClassDeclaration",
+        "interface": {
+            "inherit": [
+                "Class"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ClassDeclaration\""
+                ],
+                [
+                    "id",
+                    "null"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ExportDefaultDeclaration",
+        "interface": {
+            "inherit": [
+                "ModuleDeclaration"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ExportDefaultDeclaration\""
+                ],
+                [
+                    "declaration",
+                    {
+                        "union": [
+                            "AnonymousDefaultExportedFunctionDeclaration",
+                            "FunctionDeclaration",
+                            "AnonymousDefaultExportedClassDeclaration",
+                            "ClassDeclaration",
+                            "Expression"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "ExportAllDeclaration",
+        "interface": {
+            "inherit": [
+                "ModuleDeclaration"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"ExportAllDeclaration\""
+                ],
+                [
+                    "source",
+                    "Literal"
+                ]
+            ]
+        }
+    }
+]

@@ -1,1 +1,11 @@
-[{"extend":true,"name":"AssignmentOperator","enum":["||=","&&=","??="]}]
+[
+    {
+        "extend": true,
+        "name": "AssignmentOperator",
+        "enum": [
+            "||=",
+            "&&=",
+            "??="
+        ]
+    }
+]

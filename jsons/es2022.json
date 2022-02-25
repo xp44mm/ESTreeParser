@@ -1,1 +1,222 @@
-[{"extend":true,"name":"ClassBody","interface":{"inherit":[],"body":[["body",{"array":{"Union":["MethodDefinition","PropertyDefinition","StaticBlock"]}}]]}},{"extend":false,"name":"PropertyDefinition","interface":{"inherit":["Node"],"body":[["type","\"PropertyDefinition\""],["key",{"union":["Expression","PrivateIdentifier"]}],["value",{"union":["Expression","null"]}],["computed","boolean"],["static","boolean"]]}},{"extend":true,"name":"MethodDefinition","interface":{"inherit":[],"body":[["key",{"union":["Expression","PrivateIdentifier"]}]]}},{"extend":false,"name":"PrivateIdentifier","interface":{"inherit":["Node"],"body":[["type","\"PrivateIdentifier\""],["name","string"]]}},{"extend":true,"name":"MemberExpression","interface":{"inherit":[],"body":[["property",{"union":["Expression","PrivateIdentifier"]}]]}},{"extend":false,"name":"StaticBlock","interface":{"inherit":["BlockStatement"],"body":[["type","\"StaticBlock\""]]}},{"extend":true,"name":"BinaryExpression","interface":{"inherit":["Expression"],"body":[["left",{"union":["Expression","PrivateIdentifier"]}]]}},{"extend":true,"name":"ImportSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["imported",{"union":["Identifier","Literal"]}]]}},{"extend":true,"name":"ExportSpecifier","interface":{"inherit":["ModuleSpecifier"],"body":[["local",{"union":["Identifier","Literal"]}],["exported",{"union":["Identifier","Literal"]}]]}},{"extend":true,"name":"ExportAllDeclaration","interface":{"inherit":[],"body":[["exported",{"union":["Identifier","Literal","null"]}]]}}]
+[
+    {
+        "extend": true,
+        "name": "ClassBody",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "body",
+                    {
+                        "array": {
+                            "Union": [
+                                "MethodDefinition",
+                                "PropertyDefinition",
+                                "StaticBlock"
+                            ]
+                        }
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "PropertyDefinition",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"PropertyDefinition\""
+                ],
+                [
+                    "key",
+                    {
+                        "union": [
+                            "Expression",
+                            "PrivateIdentifier"
+                        ]
+                    }
+                ],
+                [
+                    "value",
+                    {
+                        "union": [
+                            "Expression",
+                            "null"
+                        ]
+                    }
+                ],
+                [
+                    "computed",
+                    "boolean"
+                ],
+                [
+                    "static",
+                    "boolean"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "MethodDefinition",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "key",
+                    {
+                        "union": [
+                            "Expression",
+                            "PrivateIdentifier"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "PrivateIdentifier",
+        "interface": {
+            "inherit": [
+                "Node"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"PrivateIdentifier\""
+                ],
+                [
+                    "name",
+                    "string"
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "MemberExpression",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "property",
+                    {
+                        "union": [
+                            "Expression",
+                            "PrivateIdentifier"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": false,
+        "name": "StaticBlock",
+        "interface": {
+            "inherit": [
+                "BlockStatement"
+            ],
+            "body": [
+                [
+                    "type",
+                    "\"StaticBlock\""
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "BinaryExpression",
+        "interface": {
+            "inherit": [
+                "Expression"
+            ],
+            "body": [
+                [
+                    "left",
+                    {
+                        "union": [
+                            "Expression",
+                            "PrivateIdentifier"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "ImportSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "imported",
+                    {
+                        "union": [
+                            "Identifier",
+                            "Literal"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "ExportSpecifier",
+        "interface": {
+            "inherit": [
+                "ModuleSpecifier"
+            ],
+            "body": [
+                [
+                    "local",
+                    {
+                        "union": [
+                            "Identifier",
+                            "Literal"
+                        ]
+                    }
+                ],
+                [
+                    "exported",
+                    {
+                        "union": [
+                            "Identifier",
+                            "Literal"
+                        ]
+                    }
+                ]
+            ]
+        }
+    },
+    {
+        "extend": true,
+        "name": "ExportAllDeclaration",
+        "interface": {
+            "inherit": [],
+            "body": [
+                [
+                    "exported",
+                    {
+                        "union": [
+                            "Identifier",
+                            "Literal",
+                            "null"
+                        ]
+                    }
+                ]
+            ]
+        }
+    }
+]
