@@ -12,12 +12,8 @@ type ESTreeTokenUtilsTest(output:ITestOutputHelper) =
         |> Literal.stringify
         |> output.WriteLine
 
-    static member files = 
-        PathUtils.files
-        |> Seq.map(box>>Array.singleton)
-
     [<Theory>]    
-    [<MemberData(nameof ESTreeTokenUtilsTest.files)>]
+    [<MemberData(nameof DataSource.filesForMemberData, MemberType=typeof<DataSource>)>]
     member _.``1 = tokenize from codes``(v) =
         let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.ts")
         if File.Exists filePath then

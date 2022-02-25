@@ -19,7 +19,7 @@ extend interface MemberExpression {
     property: Expression | PrivateIdentifier;
 }
 interface StaticBlock <: BlockStatement {
-    type: "StaticBlock"
+    type: "StaticBlock";
 }
 extend interface BinaryExpression <: Expression {
     left: Expression | PrivateIdentifier;
@@ -32,5 +32,5 @@ extend interface ExportSpecifier <: ModuleSpecifier {
     exported: Identifier | Literal;
 }
 extend interface ExportAllDeclaration {
-    exported: Identifier | Literal | null
+    exported: Identifier | Literal | null;
 }

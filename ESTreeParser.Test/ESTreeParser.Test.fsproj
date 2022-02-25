@@ -9,12 +9,15 @@
 
   <ItemGroup>
     <Compile Include="PathUtils.fs" />
+    <Compile Include="DataSource.fs" />
     <Compile Include="SourceTextTest.fs" />
     <Compile Include="FenceUtilsTest.fs" />
     <Compile Include="FenceDFATest.fs" />
-    <Compile Include="ESTreeTokenUtilsTest.fs" />
     <Compile Include="ESTreeParseTableTest.fs" />
+    <Compile Include="ExtractDefinitionTest.fs" />
+    <Compile Include="ESTreeTokenUtilsTest.fs" />
     <Compile Include="ParserTest.fs" />
+    <Compile Include="GenerateJsonFile.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -1,0 +1,1 @@
+[{"extend":true,"name":"CatchClause","interface":{"inherit":[],"body":[["param",{"union":["Pattern","null"]}]]}}]
