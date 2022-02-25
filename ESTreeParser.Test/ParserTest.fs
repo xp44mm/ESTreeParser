@@ -29,10 +29,8 @@ type ParserTest(output:ITestOutputHelper) =
             let text = File.ReadAllText(filePath)
             let y = 
                 Parser.parse text
-                |> JSON.read
-                |> UnquotedJson.JSON.stringifyNormalJson
 
-            output.WriteLine(y)
+            output.WriteLine(Literal.stringify y)
 
     [<Fact>]
     member _.``3 = parse union``() =
@@ -45,10 +43,8 @@ type ParserTest(output:ITestOutputHelper) =
         """
         let y = 
             Parser.parse text
-            |> JSON.read
-            |> UnquotedJson.JSON.stringifyNormalJson
 
-        output.WriteLine(y)
+        output.WriteLine(Literal.stringify y)
     [<Theory>]    
     [<MemberData(nameof DataSource.filesForMemberData, MemberType=typeof<DataSource>)>]
     member _.``1 = parser from codes``(v) =
@@ -58,7 +54,5 @@ type ParserTest(output:ITestOutputHelper) =
             let json =
                 text
                 |> Parser.parse
-                |> JSON.read
-                |> UnquotedJson.JSON.stringifyNormalJson
 
-            output.WriteLine(json)
+            output.WriteLine(Literal.stringify json)
