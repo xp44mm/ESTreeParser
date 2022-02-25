@@ -12,7 +12,7 @@ This package is A Parser for AST Descriptor Syntax of [estree](https://github.co
   Some exacted definition files in [codes folder](https://github.com/xp44mm/ESTreeParser/blob/master/codes/).
   
 - Parse the type definition to AST of AST Descriptor Syntax of estree.
-  The AST definitions see to [code file](https://github.com/xp44mm/ESTreeParser/blob/master/ESTreeParser.Test/Ast.fs).
+  The AST definitions see to [code file](https://github.com/xp44mm/ESTreeParser/blob/master/ESTreeParser/Ast.fs).
   The usages see to [test file](https://github.com/xp44mm/ESTreeParser/blob/master/ESTreeParser.Test/ParserTest.fs).
   
 - Serialize AST structure instance to JSON.
