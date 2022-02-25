@@ -33,8 +33,8 @@ let tryReadDefinition(ty:Type) (value:obj) =
             match value :?> Definition with
             | Interface (e,n,i,m) ->
                 JsonValue.Object [
-                    "extend", if e then JsonValue.True else JsonValue.False
                     "name", JsonValue.String n
+                    "extend", if e then JsonValue.True else JsonValue.False
                     "interface",JsonValue.Object[
                         "inherit", loopRead (i.GetType()) i
                         "body",loopRead (m.GetType()) m
@@ -42,8 +42,8 @@ let tryReadDefinition(ty:Type) (value:obj) =
                 ]
             | Enum (e,n,m) ->
                 JsonValue.Object [
-                    "extend", if e then JsonValue.True else JsonValue.False
                     "name", JsonValue.String n
+                    "extend", if e then JsonValue.True else JsonValue.False
                     "enum", loopRead (m.GetType()) m
                 ]
         |> Some
