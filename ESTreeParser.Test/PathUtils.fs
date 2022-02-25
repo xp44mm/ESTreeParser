@@ -1,12 +1,23 @@
 ﻿module ESTreeParser.PathUtils
 open System.IO
 
+let accountPath = DirectoryInfo(__SOURCE_DIRECTORY__).Parent.Parent.FullName
+let estreePath = Path.Combine(accountPath, @"estree")
+
 let solutionPath = DirectoryInfo(__SOURCE_DIRECTORY__).Parent.FullName
-let mainProjPath = Path.Combine(solutionPath,"ESTreeParser")
+let estreeParserPath = Path.Combine(solutionPath,"ESTreeParser")
+let codesPath = Path.Combine(solutionPath, "codes")
+let jsonsPath = Path.Combine(solutionPath, "jsons")
 
-let rootPath = DirectoryInfo(solutionPath).Parent.FullName
+let files = [|
+    "5"   
+    "2015"
+    "2016"
+    "2017"
+    "2018"
+    "2019"
+    "2020"
+    "2021"
+    "2022"
+    |]
 
-let sourcePath = Path.Combine(solutionPath, @"ESTreeParser")
-let estreePath = Path.Combine(rootPath, @"estree")
-
-let tscodesPath = Path.Combine(__SOURCE_DIRECTORY__, "tscodes")

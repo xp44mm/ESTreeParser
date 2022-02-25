@@ -1,32 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Description>A Parser for AST Descriptor Syntax of estree.</Description>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackageTags>estree;parser</PackageTags>
+		<PackageReleaseNotes>first</PackageReleaseNotes>
 
-  <ItemGroup>
-    <Compile Include="SourceText.fs" />
-    <Compile Include="FenceToken.fs" />
-    <Compile Include="FenceUtils.fs" />
-    <None Include="fence.fslex" />
-    <Compile Include="FenceDFA.fs" />
-    <Compile Include="ESTreeToken.fs" />
-    <Compile Include="ESTreeTokenUtils.fs" />
-    <Compile Include="Ast.fs" />
-    <None Include="estree.fsyacc" />
-    <Compile Include="ESTreeParseTable.fs" />
-    <Compile Include="JSON.fs" />
-    <Compile Include="Parser.fs" />
-  </ItemGroup>
+		<Company>34696643@qq.com</Company>
+		<Authors>xp44m</Authors>
+		<Copyright>xp44mm</Copyright>
+		<PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
+		<RepositoryUrl>https://github.com/xp44mm/ESTreeParser</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/xp44mm/ESTreeParser</PackageProjectUrl>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<Version>1.0.0</Version>
 
-  <ItemGroup>
-    <PackageReference Include="FslexFsyacc.Runtime" Version="1.2.6" />
-    <PackageReference Include="UnquotedJson" Version="1.0.5" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="6.0.3" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Include="SourceText.fs" />
+		<Compile Include="FenceToken.fs" />
+		<Compile Include="FenceUtils.fs" />
+		<None Include="..\readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="fence.fslex" />
+		<Compile Include="FenceDFA.fs" />
+		<Compile Include="ESTreeToken.fs" />
+		<Compile Include="ESTreeTokenUtils.fs" />
+		<Compile Include="Ast.fs" />
+		<None Include="estree.fsyacc" />
+		<Compile Include="ESTreeParseTable.fs" />
+		<Compile Include="JSON.fs" />
+		<Compile Include="Parser.fs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FslexFsyacc.Runtime" Version="1.2.6" />
+		<PackageReference Include="UnquotedJson" Version="1.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="FSharp.Core" Version="6.0.3" />
+	</ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@ type FenceDFATest(output:ITestOutputHelper) =
         |> Literal.stringify
         |> output.WriteLine
 
-    let filePath = Path.Combine(PathUtils.sourcePath, @"fence.fslex") // **input**
+    let filePath = Path.Combine(PathUtils.estreeParserPath, @"fence.fslex") // **input**
     let text = File.ReadAllText(filePath)
     let fslex = FslexFile.parse text
         
@@ -54,7 +54,7 @@ type FenceDFATest(output:ITestOutputHelper) =
         let y = fslex.toFslexDFAFile()
         let result = y.generate(moduleName)
 
-        let outputDir = Path.Combine(PathUtils.sourcePath, $"{name}.fs")
+        let outputDir = Path.Combine(PathUtils.estreeParserPath, $"{name}.fs")
         File.WriteAllText(outputDir, result)
         output.WriteLine("dfa output path:" + outputDir)
 

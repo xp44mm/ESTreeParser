@@ -12,7 +12,7 @@
     <Compile Include="SourceTextTest.fs" />
     <Compile Include="FenceUtilsTest.fs" />
     <Compile Include="FenceDFATest.fs" />
-    <Compile Include="EstreeTokenUtilsTest.fs" />
+    <Compile Include="ESTreeTokenUtilsTest.fs" />
     <Compile Include="ESTreeParseTableTest.fs" />
     <Compile Include="ParserTest.fs" />
     <Compile Include="Program.fs" />

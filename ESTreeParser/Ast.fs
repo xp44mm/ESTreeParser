@@ -23,8 +23,3 @@ type Definition =
         | Enum (_,name,_)
             -> name
 
-module Utils =
-    let rec unionMany annot1 annot2 =
-        match annot1 with
-        | Union ls -> Union (ls @ [annot2])
-        | _ -> Union [annot1; annot2]

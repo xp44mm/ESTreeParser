@@ -77,7 +77,7 @@ type ParserTest(output:ITestOutputHelper) =
         
     [<Fact>]
     member _.``2 = parser``() =
-        let source = PathUtils.tscodesPath
+        let source = PathUtils.codesPath
         let filePath = Path.Combine(source,"es2015.ts")
         if File.Exists filePath then
             let text = File.ReadAllText(filePath)

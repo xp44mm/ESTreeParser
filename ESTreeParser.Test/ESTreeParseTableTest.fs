@@ -24,7 +24,7 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
             sym
         else Quotation.quote sym
 
-    let projPath = PathUtils.mainProjPath
+    let projPath = PathUtils.estreeParserPath
     let filePath = Path.Combine(projPath, "estree.fsyacc") // **input**
     let text = File.ReadAllText(filePath)
     let rawFsyacc = FsyaccFile.parse text
