@@ -38,7 +38,7 @@ type ExtractDefinitionTest(output:ITestOutputHelper) =
                             let! lines = File.ReadAllLinesAsync(filePath)
                             let code = Parser.extractDefinitions lines
                             let targetFileName =                                 
-                                Path.Combine(target,$"es{md}.ts")
+                                Path.Combine(target,$"es{md}.estree")
                             do! File.WriteAllTextAsync(targetFileName,code)
                     }
                 )

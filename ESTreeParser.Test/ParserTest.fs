@@ -24,7 +24,7 @@ type ParserTest(output:ITestOutputHelper) =
     [<Fact>]
     member _.``2 = parser``() =
         let source = PathUtils.codesPath
-        let filePath = Path.Combine(source,"es2015.ts")
+        let filePath = Path.Combine(source,"es2015.estree")
         if File.Exists filePath then
             let text = File.ReadAllText(filePath)
             let y = 
@@ -48,7 +48,7 @@ type ParserTest(output:ITestOutputHelper) =
     [<Theory>]    
     [<MemberData(nameof DataSource.filesForMemberData, MemberType=typeof<DataSource>)>]
     member _.``1 = parser from codes``(v) =
-        let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.ts")
+        let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.estree")
         if File.Exists filePath then
             let text = File.ReadAllText(filePath)
             let json =

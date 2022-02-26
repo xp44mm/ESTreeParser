@@ -15,7 +15,7 @@ type ESTreeTokenUtilsTest(output:ITestOutputHelper) =
     [<Theory>]    
     [<MemberData(nameof DataSource.filesForMemberData, MemberType=typeof<DataSource>)>]
     member _.``1 = tokenize from codes``(v) =
-        let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.ts")
+        let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.estree")
         if File.Exists filePath then
             let text = File.ReadAllText(filePath)
             let tokens = 
