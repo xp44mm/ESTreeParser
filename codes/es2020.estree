@@ -1,5 +1,4 @@
-extend interface Literal <: Expression {
-    type: "Literal";
+﻿extend interface Literal {
     value: string | boolean | null | number | RegExp | bigint;
 }
 interface BigIntLiteral <: Literal {
@@ -22,7 +21,7 @@ interface ImportExpression <: Expression {
   source: Expression;
 }
 extend enum LogicalOperator {
-    "||" | "&&" | "??"
+    "??"
 }
 extend interface ExportAllDeclaration {
   exported: Identifier | null;

@@ -1,5 +1,5 @@
-﻿module ESTreeParser.JSON
-open ESTreeParser.Ast
+﻿module ESTreeParser.Ast.JSON
+
 open System
 open FSharp.Idioms
 open UnquotedJson

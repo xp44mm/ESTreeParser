@@ -18,7 +18,7 @@ type ExtractDefinitionTest(output:ITestOutputHelper) =
         output.WriteLine(nameof PathUtils.codesPath)
         output.WriteLine(PathUtils.codesPath)
 
-    [<Fact(Skip="once")>]//
+    [<Fact>]//(Skip="once")
     member _.``1 = write tscodes Async``() =
         let source = PathUtils.estreePath
         let target = PathUtils.codesPath
@@ -39,7 +39,7 @@ type ExtractDefinitionTest(output:ITestOutputHelper) =
                             let code = Parser.extractDefinitions lines
                             let targetFileName =                                 
                                 Path.Combine(target,$"es{md}.estree")
-                            do! File.WriteAllTextAsync(targetFileName,code)
+                            do! File.WriteAllTextAsync(targetFileName,code,System.Text.Encoding.UTF8)
                     }
                 )
                 .Merge()
@@ -51,7 +51,6 @@ type ExtractDefinitionTest(output:ITestOutputHelper) =
                 member this.OnCompleted() = 
                     output.WriteLine("done!")
                     tcs.SetResult("done!")
-
             })
         |> ignore
         tcs.Task

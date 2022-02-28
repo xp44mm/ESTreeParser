@@ -1,4 +1,4 @@
-extend interface ForOfStatement {
+﻿extend interface ForOfStatement {
   await: boolean;
 }
 extend interface ObjectExpression {

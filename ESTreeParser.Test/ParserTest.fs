@@ -51,8 +51,8 @@ type ParserTest(output:ITestOutputHelper) =
         let filePath = Path.Combine(PathUtils.codesPath,$"es{v}.estree")
         if File.Exists filePath then
             let text = File.ReadAllText(filePath)
-            let json =
+            let ast =
                 text
                 |> Parser.parse
 
-            output.WriteLine(Literal.stringify json)
+            output.WriteLine(Literal.stringify ast)

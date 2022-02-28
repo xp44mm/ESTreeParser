@@ -18,6 +18,7 @@
     <Compile Include="ESTreeTokenUtilsTest.fs" />
     <Compile Include="ParserTest.fs" />
     <Compile Include="GenerateJsonFile.fs" />
+    <Compile Include="DefinitionFileTest.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-interface Node {
+﻿interface Node {
     type: string;
     loc: SourceLocation | null;
 }

@@ -23,19 +23,21 @@
 		<Compile Include="SourceText.fs" />
 		<Compile Include="FenceToken.fs" />
 		<Compile Include="FenceUtils.fs" />
-		<None Include="..\readme.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
 		<None Include="fence.fslex" />
 		<Compile Include="FenceDFA.fs" />
 		<Compile Include="ESTreeToken.fs" />
 		<Compile Include="ESTreeTokenUtils.fs" />
-		<Compile Include="Ast.fs" />
+		<Compile Include="Ast\Ast.fs" />
+		<Compile Include="Ast\JSON.fs" />
+		<Compile Include="Ast\Render.fs" />
 		<None Include="estree.fsyacc" />
 		<Compile Include="ESTreeParseTable.fs" />
-		<Compile Include="JSON.fs" />
 		<Compile Include="Parser.fs" />
+		<Compile Include="DefinitionExtension.fs" />
+		<None Include="..\readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>

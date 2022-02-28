@@ -95,7 +95,7 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
         let fsharpCode = parseTbl.generate(moduleName)
         let outputDir = Path.Combine(projPath, $"{name}.fs")
 
-        File.WriteAllText(outputDir,fsharpCode)
+        File.WriteAllText(outputDir,fsharpCode,System.Text.Encoding.UTF8)
         output.WriteLine("output path:"+outputDir)
 
     [<Fact>]

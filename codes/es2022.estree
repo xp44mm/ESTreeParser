@@ -1,4 +1,4 @@
-extend interface ClassBody {
+﻿extend interface ClassBody {
     body: [ MethodDefinition | PropertyDefinition | StaticBlock ];
 }
 interface PropertyDefinition <: Node {
@@ -21,13 +21,13 @@ extend interface MemberExpression {
 interface StaticBlock <: BlockStatement {
     type: "StaticBlock";
 }
-extend interface BinaryExpression <: Expression {
+extend interface BinaryExpression {
     left: Expression | PrivateIdentifier;
 }
-extend interface ImportSpecifier <: ModuleSpecifier {
+extend interface ImportSpecifier {
     imported: Identifier | Literal;
 }
-extend interface ExportSpecifier <: ModuleSpecifier {
+extend interface ExportSpecifier {
     local: Identifier | Literal;
     exported: Identifier | Literal;
 }

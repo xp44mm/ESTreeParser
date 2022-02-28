@@ -1,4 +1,4 @@
-extend interface Program {
+﻿extend interface Program {
     sourceType: "script" | "module";
     body: [ Statement | ModuleDeclaration ];
 }
@@ -17,6 +17,7 @@ interface Super <: Node {
 
 extend interface CallExpression {
     callee: Expression | Super;
+    arguments: [ Expression | SpreadElement ];
 }
 
 extend interface MemberExpression {
@@ -29,10 +30,6 @@ interface SpreadElement <: Node {
 
 extend interface ArrayExpression {
     elements: [ Expression | SpreadElement | null ];
-}
-
-extend interface CallExpression {
-    arguments: [ Expression | SpreadElement ];
 }
 
 extend interface NewExpression {

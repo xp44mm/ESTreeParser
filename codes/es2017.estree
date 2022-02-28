@@ -1,4 +1,4 @@
-extend interface Function {
+﻿extend interface Function {
     async: boolean;
 }
 interface AwaitExpression <: Expression {

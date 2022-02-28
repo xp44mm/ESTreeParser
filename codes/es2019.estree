@@ -1,3 +1,3 @@
-extend interface CatchClause {
+﻿extend interface CatchClause {
     param: Pattern | null;
 }

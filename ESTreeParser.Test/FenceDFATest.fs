@@ -55,7 +55,7 @@ type FenceDFATest(output:ITestOutputHelper) =
         let result = y.generate(moduleName)
 
         let outputDir = Path.Combine(PathUtils.estreeParserPath, $"{name}.fs")
-        File.WriteAllText(outputDir, result)
+        File.WriteAllText(outputDir, result,System.Text.Encoding.UTF8)
         output.WriteLine("dfa output path:" + outputDir)
 
     [<Fact>]

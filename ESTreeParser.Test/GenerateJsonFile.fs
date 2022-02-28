@@ -26,7 +26,7 @@ type GenerateJsonFile(output:ITestOutputHelper) =
         for file in Directory.GetFiles(source) do
             output.WriteLine(file)
 
-    [<Fact>]//(Skip="once")
+    [<Fact(Skip="once")>]//
     member _.``1 = write tscodes Async``() =
 
         //删除目标目录下所有文件
@@ -43,7 +43,7 @@ type GenerateJsonFile(output:ITestOutputHelper) =
                         let json =
                             text
                             |> Parser.parse
-                            |> JSON.read
+                            |> Ast.JSON.read
                             |> UnquotedJson.JSON.stringifyNormalJson
 
                         let tfile =                                 
