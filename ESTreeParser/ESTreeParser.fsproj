@@ -6,7 +6,7 @@
 		<Description>A Parser for AST Descriptor Syntax of estree.</Description>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>estree;parser</PackageTags>
-		<PackageReleaseNotes>first</PackageReleaseNotes>
+		<PackageReleaseNotes>can resolve extended es.md file.</PackageReleaseNotes>
 
 		<Company>34696643@qq.com</Company>
 		<Authors>xp44m</Authors>
@@ -15,7 +15,7 @@
 		<RepositoryUrl>https://github.com/xp44mm/ESTreeParser</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/xp44mm/ESTreeParser</PackageProjectUrl>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 
 	</PropertyGroup>
 

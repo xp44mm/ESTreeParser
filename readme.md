@@ -18,3 +18,7 @@ This package is A Parser for AST Descriptor Syntax of [estree](https://github.co
 - Serialize AST structure instance to JSON.
   The usages see to [test file](https://github.com/xp44mm/ESTreeParser/blob/master/ESTreeParser.Test/GenerateJsonFile.fs).
   Some serialized JSON files in [jsons folder](https://github.com/xp44mm/ESTreeParser/blob/master/jsons/).
+
+- Solve the definition after the syntax extension.
+  The usages see to [test file](https://github.com/xp44mm/ESTreeParser/blob/master/ESTreeParser.Test/DefinitionFileTest.fs).
+  Some extended syntax files in [extended folder](https://github.com/xp44mm/ESTreeParser/blob/master/extended/).
