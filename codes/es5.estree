@@ -39,8 +39,7 @@ interface ExpressionStatement <: Statement {
     type: "ExpressionStatement";
     expression: Expression;
 }
-interface Directive <: Node {
-    type: "ExpressionStatement";
+interface Directive <: ExpressionStatement {
     expression: Literal;
     directive: string;
 }

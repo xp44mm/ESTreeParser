@@ -5,6 +5,7 @@ open Xunit.Abstractions
 
 open System.IO
 open FSharp.Literals
+open ESTreeParser.Ast
 
 type DefinitionFileTest(output:ITestOutputHelper) =
     let show res =
@@ -61,15 +62,16 @@ type DefinitionFileTest(output:ITestOutputHelper) =
         Assert.Empty(errors)
 
     [<Fact>]
-    member _.``4 = extending es5``() =
+    member _.``4 = generate extended es5``() =
         let newfile = "es5.estree"
         let basDefs = []
         let extDefs = getExtDefs newfile
 
         let newEs = DefinitionExtension.merge basDefs extDefs
         let y =
-            newEs 
-            |> List.map Ast.Render.renderDefinition
+            newEs
+            |> DefinitionExtension.sortDefinitions
+            |> List.map Render.renderDefinition
             |> String.concat "\r\n"
         let outputPath = Path.Combine(PathUtils.extendedPath, newfile)
         //output.WriteLine(y)
@@ -94,51 +96,13 @@ type DefinitionFileTest(output:ITestOutputHelper) =
 
         let newEs = DefinitionExtension.merge basDefs extDefs
         let y =
-            newEs 
-            |> List.map Ast.Render.renderDefinition
+            newEs
+            |> DefinitionExtension.sortDefinitions
+            |> List.map Render.renderDefinition
             |> String.concat "\r\n"
         let outputPath = Path.Combine(PathUtils.extendedPath, ext)
-        if y = File.ReadAllText(outputPath) then
+        if File.Exists(outputPath) && y = File.ReadAllText(outputPath) then
             output.WriteLine("new same as old!")
         else
             File.WriteAllText(outputPath,y,System.Text.Encoding.UTF8)
 
-    //[<Fact>]
-    //member _.``7 = verify es2015 es2016``() =
-    //    let basDefs = getBasDefs "es2015.estree"
-    //    let extDefs = getExtDefs "es2016.estree"
-
-    //    let errors = DefinitionExtension.mergeError basDefs extDefs
-    //    show errors
-    //    // 不能有错误
-    //    Assert.Empty(errors)
-
-    //[<Fact>]
-    //member _.``8 = generate extended es2016``() =
-    //    let newfile = "es2016.estree"
-    //    let basDefs = getBasDefs "es2015.estree"
-    //    let extDefs = getExtDefs newfile
-
-    //    let newEs = DefinitionExtension.merge basDefs extDefs
-    //    let y =
-    //        newEs 
-    //        |> List.map Ast.Render.renderDefinition
-    //        |> String.concat "\r\n"
-    //    let outputPath = Path.Combine(PathUtils.extendedPath, newfile)
-    //    File.WriteAllText(outputPath,y,System.Text.Encoding.UTF8)
-
-
-
-
-    //[<Fact>]
-    //member _.``4 = render interface``() =
-    //    let text = """
-    //    interface Literal <: Expression {
-    //        type: "Literal";
-    //        value: string | boolean | null | number | RegExp;
-    //    }
-    //    """
-    //    let y = 
-    //        Parser.parse text
-    //        |> Ast.Render.renderInterface()
-    //    output.WriteLine(Literal.stringify y)

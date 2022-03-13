@@ -1,4 +1,19 @@
-﻿interface Node {
+﻿enum UnaryOperator {
+    "-"|"+"|"!"|"~"|"typeof"|"void"|"delete"
+}
+enum UpdateOperator {
+    "++"|"--"
+}
+enum BinaryOperator {
+    "=="|"!="|"==="|"!=="|"<"|"<="|">"|">="|"<<"|">>"|">>>"|"+"|"-"|"*"|"/"|"%"|"|"|"^"|"&"|"in"|"instanceof"
+}
+enum AssignmentOperator {
+    "="|"+="|"-="|"*="|"/="|"%="|"<<="|">>="|">>>="|"|="|"^="|"&="
+}
+enum LogicalOperator {
+    "||"|"&&"
+}
+interface Node {
     type:string;
     loc:SourceLocation|null;
 }
@@ -38,8 +53,7 @@ interface ExpressionStatement <: Statement {
     type:"ExpressionStatement";
     expression:Expression;
 }
-interface Directive <: Node {
-    type:"ExpressionStatement";
+interface Directive <: ExpressionStatement {
     expression:Literal;
     directive:string;
 }
@@ -178,17 +192,11 @@ interface UnaryExpression <: Expression {
     prefix:boolean;
     argument:Expression;
 }
-enum UnaryOperator {
-    "-"|"+"|"!"|"~"|"typeof"|"void"|"delete"
-}
 interface UpdateExpression <: Expression {
     type:"UpdateExpression";
     operator:UpdateOperator;
     argument:Expression;
     prefix:boolean;
-}
-enum UpdateOperator {
-    "++"|"--"
 }
 interface BinaryExpression <: Expression {
     type:"BinaryExpression";
@@ -196,26 +204,17 @@ interface BinaryExpression <: Expression {
     left:Expression;
     right:Expression;
 }
-enum BinaryOperator {
-    "=="|"!="|"==="|"!=="|"<"|"<="|">"|">="|"<<"|">>"|">>>"|"+"|"-"|"*"|"/"|"%"|"|"|"^"|"&"|"in"|"instanceof"
-}
 interface AssignmentExpression <: Expression {
     type:"AssignmentExpression";
     operator:AssignmentOperator;
     left:Pattern|Expression;
     right:Expression;
 }
-enum AssignmentOperator {
-    "="|"+="|"-="|"*="|"/="|"%="|"<<="|">>="|">>>="|"|="|"^="|"&="
-}
 interface LogicalExpression <: Expression {
     type:"LogicalExpression";
     operator:LogicalOperator;
     left:Expression;
     right:Expression;
-}
-enum LogicalOperator {
-    "||"|"&&"
 }
 interface MemberExpression <: Pattern, Expression {
     type:"MemberExpression";

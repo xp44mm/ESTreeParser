@@ -58,4 +58,47 @@ let merge (baseAst:Definition list) (newAst:Definition list) =
         | _ -> failwith ""
     )
 
+//let key = function
+//    | Enum _ -> 0
+//    | Interface (e,n,i,m) -> 
+//        if i.IsEmpty && m.IsEmpty then 1
+//        elif i.IsEmpty then 2
+//        elif m.IsEmpty then 3
+//        else 4
 
+let sortDefinitions (definitions:Definition list) =
+    let enums,interfaces =
+        definitions
+        |> List.partition(function
+        | Enum _ -> true
+        | Interface _ -> false)
+    //let enums = enums |> List.sort
+    enums @ interfaces
+
+
+// 继承关系
+let inherits (definitions:Definition list) =
+    definitions
+    |> List.collect(function
+        | Enum _ -> []
+        | Interface (_,nm,bs,m) -> 
+            bs 
+            |> List.map(fun b -> nm,b)
+    )
+
+let primitives = set ["string";"boolean";"null";"number";"RegExp";"bigint";"true";"false"]
+
+//包含依赖关系
+let rec getNamedTypes (annot:Annotation) =
+    [
+        match annot with
+        | StringLiteral _ -> ()
+        | NamedType x -> 
+            if primitives.Contains x then
+                ()
+            else yield x
+
+        | Union ls -> yield! ls |> List.collect getNamedTypes 
+        | Array x -> yield! getNamedTypes x
+        | Object ls -> yield! ls |> List.collect (snd>>getNamedTypes)
+    ]

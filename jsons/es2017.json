@@ -1,1 +1,0 @@
-[{"name":"Function","extend":true,"interface":{"inherit":[],"body":[["async","boolean"]]}},{"name":"AwaitExpression","extend":false,"interface":{"inherit":["Expression"],"body":[["type","\"AwaitExpression\""],["argument","Expression"]]}}]

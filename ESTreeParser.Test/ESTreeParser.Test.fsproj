@@ -19,10 +19,12 @@
     <Compile Include="ParserTest.fs" />
     <Compile Include="GenerateJsonFile.fs" />
     <Compile Include="DefinitionFileTest.fs" />
+    <Compile Include="InterfaceTest.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Idioms" Version="1.1.22" />
     <PackageReference Include="FSharp.xUnit" Version="1.2.1" />
     <PackageReference Include="FslexFsyacc" Version="1.2.6" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
