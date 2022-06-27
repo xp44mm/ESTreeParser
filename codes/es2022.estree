@@ -21,13 +21,13 @@ extend interface MemberExpression {
 interface StaticBlock <: BlockStatement {
     type: "StaticBlock";
 }
-extend interface BinaryExpression {
+extend interface BinaryExpression <: Expression {
     left: Expression | PrivateIdentifier;
 }
-extend interface ImportSpecifier {
+extend interface ImportSpecifier <: ModuleSpecifier {
     imported: Identifier | Literal;
 }
-extend interface ExportSpecifier {
+extend interface ExportSpecifier <: ModuleSpecifier {
     local: Identifier | Literal;
     exported: Identifier | Literal;
 }

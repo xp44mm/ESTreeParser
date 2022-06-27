@@ -1,5 +1,6 @@
 ﻿%{
 // **fence.fslex**
+open FslexFsyacc.Runtime
 open ESTreeParser
 open ESTreeParser.FenceUtils
 type token = FenceToken

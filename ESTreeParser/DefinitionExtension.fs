@@ -58,21 +58,12 @@ let merge (baseAst:Definition list) (newAst:Definition list) =
         | _ -> failwith ""
     )
 
-//let key = function
-//    | Enum _ -> 0
-//    | Interface (e,n,i,m) -> 
-//        if i.IsEmpty && m.IsEmpty then 1
-//        elif i.IsEmpty then 2
-//        elif m.IsEmpty then 3
-//        else 4
-
 let sortDefinitions (definitions:Definition list) =
     let enums,interfaces =
         definitions
         |> List.partition(function
         | Enum _ -> true
         | Interface _ -> false)
-    //let enums = enums |> List.sort
     enums @ interfaces
 
 

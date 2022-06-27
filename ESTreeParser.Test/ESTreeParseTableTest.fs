@@ -4,6 +4,7 @@ open Xunit
 open Xunit.Abstractions
 open System
 open System.IO
+open System.Text
 open System.Text.RegularExpressions
 
 open FSharp.Literals
@@ -99,10 +100,24 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
         output.WriteLine("output path:"+outputDir)
 
     [<Fact>]
-    member _.``6 = valid ParseTable``() =
-        let t = fsyacc.toFsyaccParseTableFile()
-        Should.equal t.header       ESTreeParseTable.header
-        Should.equal t.actions      ESTreeParseTable.actions
-        Should.equal t.rules        ESTreeParseTable.rules
-        Should.equal t.declarations ESTreeParseTable.declarations
+    member _.``9 - valid ParseTable``() =
+        let src = fsyacc.toFsyaccParseTableFile()
+
+        Should.equal src.actions ESTreeParseTable.actions
+        Should.equal src.closures ESTreeParseTable.closures
+
+        let headerFromFsyacc =
+            FSharp.Compiler.SyntaxTreeX.Parser.getDecls("header.fsx",src.header)
+
+        let semansFsyacc =
+            let mappers = src.generateMappers()
+            FSharp.Compiler.SyntaxTreeX.SourceCodeParser.semansFromMappers mappers
+
+        let header,semans =
+            let filePath = Path.Combine(projPath, "ESTreeParseTable.fs")
+            File.ReadAllText(filePath, Encoding.UTF8)
+            |> FSharp.Compiler.SyntaxTreeX.SourceCodeParser.getHeaderSemansFromFSharp 2
+
+        Should.equal headerFromFsyacc header
+        Should.equal semansFsyacc semans
 

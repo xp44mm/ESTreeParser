@@ -1,8 +1,10 @@
 ﻿%{
 // **estree.fsyacc**
+open FslexFsyacc.Runtime
 open ESTreeParser
 open ESTreeParser.ESTreeTokenUtils
 open ESTreeParser.Ast
+type token = ESTreeToken
 
 %}
 
