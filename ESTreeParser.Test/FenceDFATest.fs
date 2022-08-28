@@ -41,12 +41,12 @@ type FenceDFATest(output:ITestOutputHelper) =
 
         let y = 
             res
-            |> Array.collect(fun re -> re.getCharacters())
-            |> Set.ofArray
+            |> List.collect(fun re -> re.getCharacters())
+            |> Set.ofList
 
         show y
 
-    [<Fact>] //(Skip="once and for all!")
+    [<Fact(Skip="once and for all!")>] //
     member _.``04 - generate DFA``() =
 
         let name = "FenceDFA" // **input**
@@ -58,7 +58,6 @@ type FenceDFATest(output:ITestOutputHelper) =
         let outputDir = Path.Combine(PathUtils.estreeParserPath, $"{name}.fs")
         File.WriteAllText(outputDir, result,System.Text.Encoding.UTF8)
         output.WriteLine("dfa output path:" + outputDir)
-
 
     [<Fact>]
     member _.``10 - valid DFA``() =

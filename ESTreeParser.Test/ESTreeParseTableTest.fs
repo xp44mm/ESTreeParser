@@ -28,8 +28,8 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
     let projPath = PathUtils.estreeParserPath
     let filePath = Path.Combine(projPath, "estree.fsyacc") // **input**
     let text = File.ReadAllText(filePath)
-    let rawFsyacc = FsyaccFile.parse text
-    let fsyacc = NormFsyaccFile.fromRaw rawFsyacc
+    let rawFsyacc = RawFsyaccFile.parse text
+    let fsyacc = FlatFsyaccFile.fromRaw rawFsyacc
 
     [<Fact>]
     member _.``1 = 显示冲突状态的冲突项目``() =
@@ -57,7 +57,6 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
         // production -> %prec
         let pprods =
             ProductionUtils.precedenceOfProductions collection.grammar.terminals productions
-            |> List.ofArray
 
         //优先级应该据此结果给出，不能少，也不应该多。
         let y = [["annotation";"annotation";"|";"annotation"],"|"]
