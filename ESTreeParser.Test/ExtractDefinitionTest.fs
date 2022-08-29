@@ -18,7 +18,7 @@ type ExtractDefinitionTest(output:ITestOutputHelper) =
         output.WriteLine(nameof PathUtils.codesPath)
         output.WriteLine(PathUtils.codesPath)
 
-    [<Fact>]//(Skip="once")
+    [<Fact(Skip="once")>]//
     member _.``1 = write tscodes Async``() =
         let source = PathUtils.estreePath
         let target = PathUtils.codesPath

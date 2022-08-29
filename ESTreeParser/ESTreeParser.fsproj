@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FslexFsyacc.Runtime" Version="1.2.19" />
+		<PackageReference Include="FslexFsyacc.Runtime" Version="1.2.20" />
 		<PackageReference Include="UnquotedJson" Version="1.0.8" />
 	</ItemGroup>
 
