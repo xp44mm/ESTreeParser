@@ -166,8 +166,7 @@ let rules:(string list*(obj list->obj))list = [
             s2::s0
         box result
 ]
-let parser = Parser<token>(rules,actions,closures,getTag,getLexeme)
-let parse(tokens:seq<token>) =
-    tokens
-    |> parser.parse
-    |> unbox<Definition list>
+let unboxRoot =
+    unbox<Definition list>
+let theoryParser = FslexFsyacc.Runtime.TheoryParser.create(rules, actions, closures)
+let stateSymbolPairs = theoryParser.getStateSymbolPairs()

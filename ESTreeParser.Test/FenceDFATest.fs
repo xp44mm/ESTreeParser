@@ -21,12 +21,12 @@ type FenceDFATest(output:ITestOutputHelper) =
     let text = File.ReadAllText(filePath)
     let fslex = FslexFile.parse text
         
-    [<Fact>]
-    member _.``01 - compiler test``() =
-        let hdr,dfs,rls = FslexCompiler.parseToStructuralData text
-        show hdr
-        show dfs
-        show rls
+    //[<Fact>]
+    //member _.``01 - compiler test``() =
+    //    let hdr,dfs,rls = FslexCompiler.parseToStructuralData text
+    //    show hdr
+    //    show dfs
+    //    show rls
         
     [<Fact>]
     member _.``02 - verify``() =
@@ -46,7 +46,7 @@ type FenceDFATest(output:ITestOutputHelper) =
 
         show y
 
-    [<Fact(Skip="once and for all!")>] //
+    [<Fact()>] // Skip="once and for all!"
     member _.``04 - generate DFA``() =
 
         let name = "FenceDFA" // **input**

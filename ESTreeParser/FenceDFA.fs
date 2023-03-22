@@ -5,12 +5,10 @@ open FslexFsyacc.Runtime
 open ESTreeParser
 open ESTreeParser.FenceUtils
 type token = FenceToken
-let rules:list<uint32 list*uint32 list*_> = [
-    [2u],[],fun(lexbuf:token list)->
+let rules:list<uint32 list*uint32 list*(list<token>->_)> = [
+    [2u],[],fun (lexbuf:list<_>) ->
         getDeclar lexbuf
-    [3u],[],fun(lexbuf:token list)->
+    [3u],[],fun (lexbuf:list<_>) ->
         []
 ]
-let analyzer = Analyzer(nextStates, rules)
-let analyze (tokens:seq<_>) = 
-    analyzer.analyze(tokens,getTag)
+let analyzer = Analyzer<_,_>(nextStates, rules)

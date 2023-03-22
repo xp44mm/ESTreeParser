@@ -2,22 +2,27 @@
 open FSharp.Idioms
 open System.Text.RegularExpressions
 open SourceText
-
+open FSharp.Idioms.ActivePatterns
 let tokenize inp =
     let rec loop (inp:string) =
         seq {
             match inp with
             | "" -> ()
-            | On tryWhiteSpace (x, rest) ->
+            | On tryWhiteSpace m ->
+                let rest = inp.[m.Length..]
                 yield! loop rest
 
-            | On trySingleLineComment (x, rest) ->
+            | On trySingleLineComment  m ->
+                let rest = inp.[m.Length..]
                 yield! loop rest
 
-            | On tryMultiLineComment (x, rest) ->
+            | On tryMultiLineComment  m ->
+                let rest = inp.[m.Length..]
                 yield! loop rest
 
-            | On tryIdentifier (x, rest) ->
+            | On tryIdentifier  m ->
+                let rest = inp.[m.Length..]
+                let x = m.Value
                 yield match x with
                         | "extend" -> EXTEND
                         | "interface" -> INTERFACE
@@ -26,8 +31,10 @@ let tokenize inp =
 
                 yield! loop rest
 
-            | On tryDoubleStringLiteral (x, rest) ->
-                yield QUOTED(Quotation.unquote x)
+            | On tryDoubleStringLiteral m ->
+                let rest = inp.[m.Length..]
+                let x = m.Value
+                yield QUOTED(JsonString.unquote x)
                 yield! loop rest
 
             | _ when inp.[0] = ',' ->

@@ -9,7 +9,7 @@ let tryReadAnnotation(ty:Type) (value:obj) =
         fun (read:Type->obj->_) ->
             match value :?> Annotation with
             | StringLiteral x ->
-                Quotation.quote x |> JsonValue.String
+                JsonString.quote x |> JsonValue.String
             | NamedType x ->
                 x |> JsonValue.String
             | Union x ->

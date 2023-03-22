@@ -78,24 +78,29 @@ cases:
 
 %%
 
-// token
-QUOTED : "string"
-ID     : "string"
+%type<string> QUOTED ID
+%type<Definition list> file definitions
+%type<Definition> definition interfaceDefinition enumDefinition
+%type<bool*string*list<string>> interfaceHead
+%type<string list> ids enumBody cases
+%type<list<string*Annotation>> interfaceBody fields
+%type<string*Annotation> field
+%type<Annotation> annotation
+%type<bool*string> enumHead
 
-// production
-file: "Definition list"
-definitions: "Definition list"
-definition: "Definition"
-interfaceDefinition: "Definition"
-enumDefinition: "Definition"
-
-interfaceHead: "bool*string*list<string>"
-ids: "string list"
-interfaceBody: "list<string*Annotation>"
-fields: "list<string*Annotation>"
-field: "string*Annotation"
-annotation: "Annotation"
-
-enumHead: "bool*string"
-enumBody: "string list"
-cases: "string list"
+// QUOTED : "string"
+// ID     : "string"
+// file: "Definition list"
+// definitions: "Definition list"
+// definition: "Definition"
+// interfaceDefinition: "Definition"
+// enumDefinition: "Definition"
+// interfaceHead: "bool*string*list<string>"
+// ids: "string list"
+// interfaceBody: "list<string*Annotation>"
+// fields: "list<string*Annotation>"
+// field: "string*Annotation"
+// annotation: "Annotation"
+// enumHead: "bool*string"
+// enumBody: "string list"
+// cases: "string list"

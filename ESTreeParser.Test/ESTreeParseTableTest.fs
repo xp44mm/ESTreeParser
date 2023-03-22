@@ -23,84 +23,45 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
     let symbolRender sym =
         if Regex.IsMatch(sym,@"^\w+$") then
             sym
-        else Quotation.quote sym
+        else JsonString.quote sym
 
     let projPath = PathUtils.estreeParserPath
     let filePath = Path.Combine(projPath, "estree.fsyacc") // **input**
     let text = File.ReadAllText(filePath)
-    let rawFsyacc = RawFsyaccFile.parse text
-    let fsyacc = FlatFsyaccFile.fromRaw rawFsyacc
 
-    [<Fact>]
-    member _.``1 = 显示冲突状态的冲突项目``() =
-        let collection =
-            AmbiguousCollection.create <| fsyacc.getMainProductions()
-        let conflicts =
-            collection.filterConflictedClosures()
-        show conflicts
-        let y = Map[
-            7,Map["|",set[
-                {production=["annotation";"annotation";"|";"annotation"];dot=1};
-                {production=["annotation";"annotation";"|";"annotation"];dot=3}]]]
+    //let rawFsyacc = RawFsyaccFile.parse text
+    //let fsyacc = FlatFsyaccFile.fromRaw rawFsyacc
 
-        Should.equal y conflicts
+    let name = "ESTreeParseTable" // **input**
+    let parseTblModule = $"ESTreeParser.{name}"// **input**
+    let modulePath = Path.Combine(projPath, "ESTreeParseTable.fs")
 
-    [<Fact>]
-    member _.``2 = 汇总冲突的产生式``() =
-        let collection =
-            AmbiguousCollection.create <| fsyacc.getMainProductions()
-        let conflicts =
-            collection.filterConflictedClosures()
+    let grammar text =
+        text
+        |> FlatFsyaccFileUtils.parse
+        |> FlatFsyaccFileUtils.toGrammar
 
-        let productions =
-            AmbiguousCollection.gatherProductions conflicts
-        // production -> %prec
-        let pprods =
-            ProductionUtils.precedenceOfProductions collection.grammar.terminals productions
+    let ambiguousCollection text =
+        text
+        |> FlatFsyaccFileUtils.parse
+        |> FlatFsyaccFileUtils.toAmbiguousCollection
 
-        //优先级应该据此结果给出，不能少，也不应该多。
-        let y = [["annotation";"annotation";"|";"annotation"],"|"]
+    //解析表数据
+    let parseTbl text = 
+        text
+        |> FlatFsyaccFileUtils.parse
+        |> FlatFsyaccFileUtils.toFsyaccParseTableFile
 
-        Should.equal y pprods
-
-    [<Fact>]
-    member _.``3 = list all tokens``() =
-        let grammar = Grammar.from <| fsyacc.getMainProductions()
-        let tokens =
-            grammar.symbols - grammar.nonterminals
-        show tokens
-
-
-    [<Fact>]
-    member _.``4 = print the template of type annotaitions``() =
-        let grammar = Grammar.from <| fsyacc.getMainProductions()
-
-        let symbols =
-            grammar.nonterminals
-            |> Set.map(symbolRender)
-
-        let sourceCode =
-            [
-                for i in symbols do
-                    $"{i}: \"string\""
-            ] |> String.concat "\r\n"
-        output.WriteLine(sourceCode)
-
-    [<Fact(Skip="once and for all!")>] //
+    [<Fact()>] //Skip="once and for all!"
     member _.``5 = generate parsing table``() =
-        let name = "ESTreeParseTable" // **input**
-        let moduleName = $"ESTreeParser.{name}"// **input**
-
-        let parseTbl = fsyacc.toFsyaccParseTableFile()
-        let fsharpCode = parseTbl.generate(moduleName)
-        let outputDir = Path.Combine(projPath, $"{name}.fs")
-
-        File.WriteAllText(outputDir,fsharpCode,System.Text.Encoding.UTF8)
-        output.WriteLine("output path:"+outputDir)
+        let parseTbl = parseTbl text
+        let fsharpCode = parseTbl.generateModule(parseTblModule)
+        File.WriteAllText(modulePath,fsharpCode,System.Text.Encoding.UTF8)
+        output.WriteLine("module path:"+modulePath)
 
     [<Fact>]
     member _.``9 - valid ParseTable``() =
-        let src = fsyacc.toFsyaccParseTableFile()
+        let src =  parseTbl text
 
         Should.equal src.actions ESTreeParseTable.actions
         Should.equal src.closures ESTreeParseTable.closures
@@ -113,8 +74,7 @@ type ESTreeParseTableTest(output:ITestOutputHelper) =
             FSharp.Compiler.SyntaxTreeX.SourceCodeParser.semansFromMappers mappers
 
         let header,semans =
-            let filePath = Path.Combine(projPath, "ESTreeParseTable.fs")
-            File.ReadAllText(filePath, Encoding.UTF8)
+            File.ReadAllText(modulePath, Encoding.UTF8)
             |> FSharp.Compiler.SyntaxTreeX.SourceCodeParser.getHeaderSemansFromFSharp 2
 
         Should.equal headerFromFsyacc header

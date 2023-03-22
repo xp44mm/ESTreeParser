@@ -1,10 +1,10 @@
 ﻿module ESTreeParser.Ast.Render
 open System
 open FSharp.Idioms
- 
+open FSharp.Idioms.StringOps 
 let rec renderAnnotation (annot:Annotation) =
     match annot with
-    | StringLiteral x -> Quotation.quote x
+    | StringLiteral x -> JsonString.quote x
     | NamedType x -> x
     | Union ls -> ls |> List.map renderAnnotation |> String.concat "|"
     | Array x -> $"[{renderAnnotation x}]"
@@ -19,7 +19,7 @@ let renderEnum (e,n,ms) =
     let e = if e then "extend " else ""
     let ms =
         ms
-        |> List.map(Quotation.quote )
+        |> List.map(JsonString.quote )
         |> String.concat "|"
     let body = sprintf "{\r\n%s%s\r\n}" (space 4) ms
     $"{e}enum {n} {body}"

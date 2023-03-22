@@ -6,7 +6,6 @@ open ESTreeParser.FenceUtils
 type token = FenceToken
 %}
 
-
 %%
 
 [FENCESTART FENCE] LINE * FENCE { getDeclar lexbuf }

@@ -2,22 +2,23 @@
 
 open FSharp.Idioms
 open System.Text.RegularExpressions
+open FSharp.Idioms.RegularExpressions
 
 let tryLineTerminator =
     Regex @"^(\r?\n|\r)"
-    |> tryMatch
+    |> trySearch
 
 let tryWhiteSpace =
     Regex @"^\s+"
-    |> tryMatch
+    |> trySearch
 
 let trySingleLineComment =
     Regex @"^//.*"
-    |> tryMatch
+    |> trySearch
 
 let tryMultiLineComment =
     Regex @"^/\*[\s\S]*?\*/"
-    |> tryMatch
+    |> trySearch
 
 //An identifier must start with $, _, or any character in the Unicode categories
 //“Uppercase letter (Lu)”, “Lowercase letter (Ll)”, “Titlecase letter (Lt)”, “Modifier letter (Lm)”, “Other letter (Lo)”, or
@@ -30,54 +31,54 @@ let tryMultiLineComment =
 
 let tryIdentifier =
     Regex @"^[$_\p{L}\p{Nl}][$_\p{L}\p{Mn}\p{Mc}\p{Nl}\p{Nd}\p{Pc}\u200C\u200D]*"
-    |> tryMatch
+    |> trySearch
 
 let tryOptionalChainingPunctuator =
     Regex @"^\?\.(?!\d)"
-    |> tryMatch
+    |> trySearch
 
-let tryDivPunctuator = Regex @"^/=?" |> tryMatch
+let tryDivPunctuator = Regex @"^/=?" |> trySearch
 
-let tryRightBracePunctuator = tryFirst '}'
+//let tryRightBracePunctuator = (|First|_|) '}'
 
 let illegalNumberSep (input: string) = Regex.IsMatch(input, "(^_|_$|\D_|_\D)")
 
 let tryBinaryIntegerLiteral =
     Regex @"^0[bB][01_]+n?\b"
-    |> tryMatch
+    |> trySearch
 
 let tryOctalIntegerLiteral =
     Regex @"^0[oO][0-7_]+n?\b"
-    |> tryMatch
+    |> trySearch
 
 let tryHexIntegerLiteral =
     Regex @"^0[xX][0-9a-fA-F_]+n?\b"
-    |> tryMatch
+    |> trySearch
 
 let tryDecimalIntegerLiteral =
     Regex @"^\d[\d_]*n?\b"
-    |> tryMatch
+    |> trySearch
 
 let tryDecimalLiteral =
     Regex @"^(?!_)([\d_]*\.[\d_]+|[\d_]+\.[\d_]*)([eE][-+]?[\d_]+)?"
-    |> tryMatch
+    |> trySearch
 
 let trySingleStringLiteral =
     Regex @"^'(\\\\|\\'|[^'])*'"
-    |> tryMatch
+    |> trySearch
 
 let tryDoubleStringLiteral =
     Regex """^"(\\\\|\\"|[^"])*(")"""
-    |> tryMatch
+    |> trySearch
 
 //这是简易模板，要求内部的注释，字符串字面量等不能再包含`反引号。
 let tryTemplate =
     Regex @"^`(\\\\|\\`|[^`])*`"
-    |> tryMatch
+    |> trySearch
 
 let tryRegularExpressionLiteral =
     Regex @"^/(\\\\|\\/|[^/])+/[gimsuy]*"
-    |> tryMatch
+    |> trySearch
 
 let isDeclar (line:string) =
     let re = Regex @"^\s*(extend\s+)?(interface|enum)\b"
